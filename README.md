@@ -1,13 +1,39 @@
 # TokenSpot
-Сейф с механическим кодовым замком содержит N(положим 1 <= N <= 6) независимо вращающихся(в обе стороны) ручек с цифрами 0-9(в окошке над каждой ручкой отображается одна выбранная цифра).
-Изначально ручки стоят в определенном положении(например для N=3: 0,0,0).
-За каждый "шаг" можно повернуть только одну ручку и только на одно значение(изменив цифру только на +1 или -1).
-Известна целевая комбинация, открывающая сейф(например: 1,1,1).
-Так же известен набор запрещенных комбинаций, при попадании в которые содержимое сейфа будет уничтожено(например: 0,0,1; 1,0,0).
-Необходимо "открыть сейф" - найти последовательность комбинаций при вращении ручек, позволяющую из заданного начального положения попасть в комбинацию, открывающую сейф, предотвращая уничтожение содержимого сейфа(исключая попадание в одну из запрещённых комбинаций).
-Необходимо представить архив или github(или bitbucket, или тп) репозиторий, содержащий код на Ruby(или Rails), решающий данную задачу - вводящий исходные данные и представляющий любую из возможных последовательностей комбинаций от исходной к целевой, исключая запрещенные; или сигнализирующий об отсутствии решения. Ввод/вывод - по желанию(консоль, файл, UI и тп).
-Наличие тестов приветствуется. Например, при входных данных:
-N=3
-inital_state = [0, 0, 0]
-target_state = [1, 1, 1] restricted_combinations = [[0, 0, 1], [1, 0, 0]]
-Решение: [0, 0, 0] [0, 1, 0] [1, 1, 0] [1, 1, 1]
+
+## Safe Unlock Algorithm
+This project implements an algorithm for finding a path to unlock a lock with numeric states. Input data is read from a file, and the task is to find a path from the initial state to the target state while avoiding restricted states.
+
+## How it works
+
+- **Initial state**: Given as a list of digits.
+- **Target state**: Given as a list of digits to reach.
+- **Restricted states**: Given as a list of states that cannot be visited.
+
+The algorithm iterates over all possible states, starting from the initial one, and applies operations (increment or decrement digits). It continues until it finds a path to the target state, avoiding the restricted states.
+
+## Project Structure
+
+- `crypto.rb`: The main algorithm code.
+- `input.txt`: Example input data.
+- `README.md`: This file.
+
+## Installation
+
+Ruby version 2.0 or higher is required to run the project.
+
+1. Download or clone the repository.
+2. Ensure that Ruby is installed on your machine.
+3. Run the script using the following command:
+
+   ```bash
+   ruby crypto.rb
+
+## Input Data Format
+
+The input data should be provided in the input.txt file in the following format:
+  ```
+  N
+  [initial_state]
+  [target_state]
+  [[restricted_state_1], [restricted_state_2], ...]
+  ```
